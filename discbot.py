@@ -3,9 +3,10 @@ from discord.ext.commands import has_permissions
 import discord
 from interactions import listen
 
-token = "MTEzMzkyMDQ3NzE5MTA5NDI4NA.G2F6cH.0WVpLr1IgioUrr7fFmvRBTgWoUquR19Tel475c"
+bot_key_file = open("token.txt")
+bot_key = bot_key_file.read()
 
-bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token="MTEzMzkyMDQ3NzE5MTA5NDI4NA.G2F6cH.0WVpLr1IgioUrr7fFmvRBTgWoUquR19Tel475c")
+bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=bot_key)
 
 
 @interactions.slash_command(
