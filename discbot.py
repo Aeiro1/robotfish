@@ -15,7 +15,7 @@ bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.In
     default_member_permissions=interactions.Permissions.ADMINISTRATOR,
 )
 async def exit_command_run(ctx: interactions.SlashContext):
-    await ctx.send(ctx.author.mention + " quit the bot, Goodbye!")
+    await ctx.send(ctx.author.mention + " quit the bot, Goodbye!" + (" (" + ctx.bot.owner.mention + " bot is down)"))
     await bot.stop()
     #exit()
     
