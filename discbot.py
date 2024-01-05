@@ -6,7 +6,7 @@ from interactions import listen
 bot_key_file = open("token.txt")
 bot_key = bot_key_file.read()
 
-bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=bot_key)
+bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=TOKEN)
 print ("BOT Online")
 
 @interactions.slash_command(
