@@ -30,7 +30,6 @@ async def hello_command(ctx: interactions.SlashContext):
 @interactions.slash_command(
     name="vx",
     description="fixes twitter embed",
-    scopes=[1133920869773746359, 779520655930163281],
 )
 @interactions.slash_option(
     name="link",
@@ -45,7 +44,7 @@ async def vx_embed(ctx: interactions.SlashContext, link: str):
         link = link.replace("x", "fixvx")
     else:
         link = "invalid link submitted"
-    await ctx.send(link)
+    await ctx.send(link, silent=True)
 
 
 # @listen(interactions.api.events.MessageCreate)
@@ -62,10 +61,10 @@ async def fix_embed(event):
     fixed = event.message.content
     if "//twitter.com/" in fixed:
         fixed = fixed.replace("twitter", "vxtwitter")
-        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False))
+        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
     elif "//x.com/" in fixed:
         fixed = fixed.replace("x", "fixvx")
-        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False))
+        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
 
 @interactions.slash_command(
     name="returnstring",
