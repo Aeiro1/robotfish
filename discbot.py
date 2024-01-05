@@ -2,11 +2,11 @@ import interactions
 from discord.ext.commands import has_permissions
 import discord
 from interactions import listen
+import os
 
-bot_key_file = open("token.txt")
-bot_key = bot_key_file.read()
+BOT_TOKEN = os.getenv('TOKEN')
 
-bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=TOKEN)
+bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=BOT_TOKEN)
 print ("BOT Online")
 
 @interactions.slash_command(
