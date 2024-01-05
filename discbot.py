@@ -7,7 +7,7 @@ bot_key_file = open("token.txt")
 bot_key = bot_key_file.read()
 
 bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=bot_key)
-
+print ("BOT Online")
 
 @interactions.slash_command(
     name="exit_command",
