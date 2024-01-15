@@ -2,11 +2,19 @@ import interactions
 from discord.ext.commands import has_permissions
 import discord
 from interactions import listen
+import random
 
 token_file = open("token.txt")
 bot_token = token_file.read()
 
-bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=bot_token)
+bot = interactions.Client(intents=interactions.Intents.DEFAULT | interactions.Intents.MESSAGE_CONTENT, token=bot_token, 
+                           sync_interactions=True)
+
+# delete_unused_application_cmds=True // on startup to reset any dup commands
+# debug_scope=1133920869773746359   //  debug scope to test server for insta sync commands
+
+@listen()
+
 
 
 @interactions.slash_command(
@@ -80,6 +88,32 @@ async def fix_embed(event):
 async def return_command(ctx: interactions.SlashContext, text: str):
     await ctx.send(f"You sent the string '{text}'!")
 
+
+@interactions.slash_command(
+    name="number",
+    description="Picks random number between values"
+)
+@interactions.slash_option(
+    name="high_num",
+    description="Upper bound for generator",
+    required=True,
+    opt_type=interactions.OptionType.INTEGER,
+)
+@interactions.slash_option(
+    name="low_num",
+    description="Lower bound for generator, 0 by default",
+    opt_type=interactions.OptionType.INTEGER,
+)
+async def num_gen(ctx: interactions.SlashContext, high_num: int, low_num: int = 0):
+    await ctx.send(random.randint(low_num, high_num), silent=True)
+
+@interactions.slash_command(
+    name="coinflip",
+    description="Flips a coin",
+)
+async def coin_flip(ctx: interactions.SlashContext):
+    coin = random.choice(["Heads", "Tails"])
+    await ctx.send(coin, silent=True)
 
 bot.start()
 # while True:
