@@ -1,6 +1,4 @@
 import interactions
-from discord.ext.commands import has_permissions
-import discord
 from interactions import listen
 import os
 
