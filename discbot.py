@@ -46,28 +46,20 @@ async def vx_embed(ctx: interactions.SlashContext, link: str):
         link = "invalid link submitted"
     await ctx.send(link, silent=True)
 
-
-# @listen(interactions.api.events.MessageCreate)
-# async def fixembed(message):
-#     if message.content.startswith("https://x"):
-#         msg = message.content.replace("x", "fixvx")
-#         msg = await message.channel.send(msg)
-#     elif message.content.startswith("https://twitter"):
-#         msg = message.content.replace("twitter", "vxtwitter")
-#         msg = await message.channel.send(msg)
-
-@listen("on_message_create")
-async def fix_embed(event):
-    fixed = event.message.content
-    if "//twitter.com/" in fixed:
-        fixed = fixed.replace("twitter", "vxtwitter")
-        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
-    elif "//x.com/" in fixed:
-        fixed = fixed.replace("x", "fixvx")
-        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
-    elif "//www.tiktok.com/" in fixed:
-        fixed = fixed.replace("tiktok", "tiktxk")
-        await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
+# BREAK HERE IF DISCORD TWITTER EMBEDS STOP WORKING
+# --------------------------------------------------
+# @listen("on_message_create")
+# async def fix_embed(event):
+#     fixed = event.message.content
+#     if "//twitter.com/" in fixed:
+#         fixed = fixed.replace("twitter", "vxtwitter")
+#         await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
+#     elif "//x.com/" in fixed:
+#         fixed = fixed.replace("x", "fixvx")
+#         await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
+#     elif "//www.tiktok.com/" in fixed:
+#         fixed = fixed.replace("tiktok", "tiktxk")
+#         await event.message.reply(fixed, allowed_mentions=interactions.AllowedMentions(replied_user=False), silent=True)
 
 @interactions.slash_command(
     name="returnstring",
